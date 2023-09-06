@@ -7,7 +7,7 @@
 (defparameter *step* 5)
 
 (defparameter *modeline-fmt* "%b(%v)"
-  "The default value for displaying pamixer information on the modeline")
+  "The default value for displaying wpctl information on the modeline")
 
 (defparameter *source-modeline-fmt* "%b(%v)"
   "The default value for displaying wpctl source information on the modeline")
