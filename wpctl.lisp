@@ -16,6 +16,7 @@
   '((#\b  ml-bar)
     (#\v  ml-volume)))
 
+(defparameter *wpctl-path* "/usr/bin/wpctl")
 (defparameter *mixer-command* "pavucontrol")
 
 (defparameter *default-sink-id* "@DEFAULT_AUDIO_SINK@")
@@ -25,7 +26,10 @@
 (defvar *mute-regex* (ppcre:create-scanner "Volume: \\d+\\.\\d+ \\[MUTED\\]"))
 
 (defun run (args &optional (wait-output nil))
-  (sb-ext:run-program "wpctl" :args args :wait wait-output))
+  (if wait-output
+      (with-output-to-string (s)
+        (sb-ext:run-program *wpctl-path* args :wait t :output s))
+      (sb-ext:run-program *wpctl-path* args :wait nil)))
 
 (defun volume-up (device-id step)
   (run (list "set-volume" device-id (format nil "~D%+" step))))
@@ -39,7 +43,7 @@
 (defun get-volume (device-id)
   (truncate (* 100 (parse-float (aref (nth-value 1
                                                  (ppcre:scan-to-strings *volume-regex*
-                                                                        (run (list "get-volume" device-id)t)))
+                                                                        (run (list "get-volume" device-id) t)))
                                       0)))))
 
 (defun get-mute (device-id)
