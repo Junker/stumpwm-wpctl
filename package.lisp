@@ -1,8 +1,6 @@
 (defpackage :wpctl
   (:use #:cl :stumpwm #:parse-float)
-  (:export #:*default-sink-id*
-           #:*default-source-id*
-           #:volume-up
+  (:export #:volume-up
            #:volume-down
            #:set-volume
            #:get-volume
@@ -13,6 +11,10 @@
            #:modeline
            #:ml-bar
            #:ml-volume
+           #:*default-sink-id*
+           #:*default-source-id*
+           #:*mixer-command*
+           #:*wpctl-path*
            #:*step*
            #:*modeline-fmt*
            #:*source-modeline-fmt*))

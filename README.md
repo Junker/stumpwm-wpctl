@@ -51,6 +51,7 @@ git clone https://github.com/Junker/stumpwm-wpctl wpctl
 - wpctl:\*mixer-command\* - external mixer program that opens on modeline right click (default: pavucontrol)
 - wpctl:\*default-sink-id\*
 - wpctl:\*default-source-id\*
+- wpctl:\*wpctl-path\*
 
 ## Modeline
 

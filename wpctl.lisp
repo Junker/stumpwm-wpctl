@@ -25,36 +25,36 @@
 (defvar *mute-regex* (ppcre:create-scanner "Volume: \\d+\\.\\d+ \\[MUTED\\]"))
 
 (defun run (args &optional (wait-output nil))
-  (run-shell-command (concat "wpctl " args) wait-output))
+  (sb-ext:run-program "wpctl" :args args :wait wait-output))
 
 (defun volume-up (device-id step)
-  (run (format nil "set-volume ~A ~D%+" device-id step)))
+  (run (list "set-volume" device-id (format nil "~D%+" step))))
 
 (defun volume-down (device-id step)
-  (run (format nil "set-volume ~A ~D%-" device-id step)))
+  (run (list "set-volume" device-id (format nil "~D%-" step))))
 
 (defun set-volume (device-id value)
-  (run (format nil "set-volume ~A ~D%" device-id value)))
+  (run (list "set-volume" device-id (format nil "~D%" value))))
 
 (defun get-volume (device-id)
   (truncate (* 100 (parse-float (aref (nth-value 1
                                                  (ppcre:scan-to-strings *volume-regex*
-                                                                        (run (format nil "get-volume ~A" device-id) t)))
+                                                                        (run (list "get-volume" device-id)t)))
                                       0)))))
 
 (defun get-mute (device-id)
   (and (ppcre:scan *mute-regex*
-                   (run (format nil "get-volume ~A" device-id) t))
+                   (run (list "get-volume" device-id) t))
        t))
 
 (defun unmute (device-id)
-  (run (format "set-mute ~A 0" device-id)))
+  (run (list "set-mute" device-id "0")))
 
 (defun mute (device-id)
-  (run (format nil "set-mute ~A 1" device-id)))
+  (run (list "set-mute" device-id "1")))
 
 (defun toggle-mute (device-id)
-  (run (format nil "set-mute ~A toggle" device-id)))
+  (run (list "set-mute" device-id "toggle")))
 
 (defun open-mixer ()
   (run-shell-command *mixer-command*))
