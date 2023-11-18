@@ -47,11 +47,11 @@ git clone https://github.com/Junker/stumpwm-wpctl wpctl
 
 ### Parameters
 
-- `wpctl:\*step\*` - volume increase/decrease step
-- `wpctl:\*mixer-command\*` - external mixer program that opens on modeline right click (default: pavucontrol)
-- `wpctl:\*default-sink-id\*`
-- `wpctl:\*default-source-id\*`
-- `wpctl:\*wpctl-path\*`
+- `wpctl:*step*` - volume increase/decrease step
+- `wpctl:*mixer-command*` - external mixer program that opens on modeline right click (default: pavucontrol)
+- `wpctl:*default-sink-id*`
+- `wpctl:*default-source-id*`
+- `wpctl:*wpctl-path*`
 
 ## Modeline
 
@@ -59,7 +59,7 @@ git clone https://github.com/Junker/stumpwm-wpctl wpctl
 
 ### Parameters for modeline
 
-- `wpctl:\*modeline-fmt\*` - format of wpctl modeline (default: "%b(%v)")
+- `wpctl:*modeline-fmt*` - format of wpctl modeline (default: "%b(%v)")
   - `%b` - volume bar
   - `%v` - volume value
 
