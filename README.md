@@ -29,39 +29,39 @@ git clone https://github.com/Junker/stumpwm-wpctl wpctl
 
 ### Commands
 
-- wpctl-volume-up
-- wpctl-volume-down
-- wpctl-mute
-- wpctl-unmute
-- wpctl-toggle-mute
-- wpctl-set-volume volume
+- `wpctl-volume-up`
+- `wpctl-volume-down`
+- `wpctl-mute`
+- `wpctl-unmute`
+- `wpctl-toggle-mute`
+- `wpctl-set-volume volume`
 
 **control of source, e.g. microphone:**
 
-- wpctl-source-volume-up
-- wpctl-source-volume-down
-- wpctl-source-mute
-- wpctl-source-unmute
-- wpctl-source-toggle-mute
-- wpctl-source-set-volume volume
+- `wpctl-source-volume-up`
+- `wpctl-source-volume-down`
+- `wpctl-source-mute`
+- `wpctl-source-unmute`
+- `wpctl-source-toggle-mute`
+- `wpctl-source-set-volume volume`
 
 ### Parameters
 
-- wpctl:\*step\* - volume increase/decrease step
-- wpctl:\*mixer-command\* - external mixer program that opens on modeline right click (default: pavucontrol)
-- wpctl:\*default-sink-id\*
-- wpctl:\*default-source-id\*
-- wpctl:\*wpctl-path\*
+- `wpctl:\*step\*` - volume increase/decrease step
+- `wpctl:\*mixer-command\*` - external mixer program that opens on modeline right click (default: pavucontrol)
+- `wpctl:\*default-sink-id\*`
+- `wpctl:\*default-source-id\*`
+- `wpctl:\*wpctl-path\*`
 
 ## Modeline
 
-%P - wpctl formatter
+`%P` - wpctl formatter
 
 ### Parameters for modeline
 
-- wpctl:\*modeline-fmt\* - format of wpctl modeline (default: "%b(%v)")
-  - %b - volume bar
-  - %v - volume value
+- `wpctl:\*modeline-fmt\*` - format of wpctl modeline (default: "%b(%v)")
+  - `%b` - volume bar
+  - `%v` - volume value
 
 ### Modeline mouse interaction
 
