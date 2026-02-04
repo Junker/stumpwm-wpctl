@@ -22,6 +22,7 @@ git clone https://github.com/Junker/stumpwm-wpctl wpctl
 ## Usage
 
 ```lisp
+  (wpctl:init) ; to initialize modeline updates
   (define-key *top-map* (kbd "XF86AudioRaiseVolume") "wpctl-volume-up")
   (define-key *top-map* (kbd "XF86AudioLowerVolume") "wpctl-volume-down")
   (define-key *top-map* (kbd "XF86AudioMute") "wpctl-toggle-mute")
@@ -49,6 +50,7 @@ git clone https://github.com/Junker/stumpwm-wpctl wpctl
 
 - `wpctl:*step*` - volume increase/decrease step
 - `wpctl:*mixer-command*` - external mixer program that opens on modeline right click (default: pavucontrol)
+- `battery:*check-interval*` - Interval in seconds for wpctl check (Default: 1). 
 - `wpctl:*default-sink-id*`
 - `wpctl:*default-source-id*`
 - `wpctl:*wpctl-path*`
