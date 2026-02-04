@@ -118,40 +118,6 @@
   (update-info)
   (run-with-timer 0 *check-interval* #'update-info))
 
-(defun ml-on-click (code id &rest rest)
-  (declare (ignore rest))
-  (declare (ignore id))
-  (let ((button (stumpwm::decode-button-code code)))
-    (case button
-      ((:left-button)
-       (toggle-mute *default-sink-id*))
-      ((:right-button)
-       (open-mixer))
-      ((:wheel-up)
-       (volume-up *default-sink-id* *step*))
-      ((:wheel-down)
-       (volume-down *default-sink-id* *step*))))
-  (stumpwm::update-all-mode-lines))
-
-(defun source-ml-on-click (code id &rest rest)
-  (declare (ignore rest))
-  (declare (ignore id))
-  (let ((button (stumpwm::decode-button-code code)))
-    (case button
-      ((:left-button)
-       (toggle-mute *default-source-id*))
-      ((:right-button)
-       (open-mixer))
-      ((:wheel-up)
-       (volume-up *default-source-id* *step*))
-      ((:wheel-down)
-       (volume-down *default-source-id* *step*))))
-  (stumpwm::update-all-mode-lines))
-
-(when (fboundp 'stumpwm::register-ml-on-click-id) ;check in case of old stumpwm version
-  (register-ml-on-click-id :ml-wpctl-on-click #'ml-on-click)
-  (register-ml-on-click-id :ml-wpctl-source-on-click #'source-ml-on-click))
-
 (defcommand wpctl-volume-up () ()
   "Increase the volume by N points"
   (volume-up *default-sink-id* *step*)
@@ -211,3 +177,39 @@
   "Set source volume"
   (set-volume *default-source-id* value)
   (update-source-volume))
+
+;; modeline mouse interaction
+
+(defun ml-on-click (code id &rest rest)
+  (declare (ignore rest))
+  (declare (ignore id))
+  (let ((button (stumpwm::decode-button-code code)))
+    (case button
+      ((:left-button)
+       (wpctl-toggle-mute))
+      ((:right-button)
+       (open-mixer))
+      ((:wheel-up)
+       (wpctl-volume-up))
+      ((:wheel-down)
+       (wpctl-volume-down))))
+  (stumpwm::update-all-mode-lines))
+
+(defun source-ml-on-click (code id &rest rest)
+  (declare (ignore rest))
+  (declare (ignore id))
+  (let ((button (stumpwm::decode-button-code code)))
+    (case button
+      ((:left-button)
+       (wpctl-source-toggle-mute))
+      ((:right-button)
+       (open-mixer))
+      ((:wheel-up)
+       (wpctl-source-volume-up))
+      ((:wheel-down)
+       (wpctl-source-volume-down))))
+  (stumpwm::update-all-mode-lines))
+
+(when (fboundp 'stumpwm::register-ml-on-click-id) ;check in case of old stumpwm version
+  (register-ml-on-click-id :ml-wpctl-on-click #'ml-on-click)
+  (register-ml-on-click-id :ml-wpctl-source-on-click #'source-ml-on-click))
