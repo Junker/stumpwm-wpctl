@@ -1,6 +1,7 @@
 # StumpWM wpctl
 
 Minimalistic PipeWire volume and microphone control module for StumpWM.
+The module operates in a non-blocking manner, utilizing a separate thread to interact with wireplumber.
 
 ## Requirements
 
