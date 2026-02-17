@@ -116,7 +116,11 @@
 
 (defun init ()
   (update-info)
-  (run-with-timer 0 *check-interval* #'update-info))
+  (run-with-timer 0 *check-interval*
+                  (lambda ()
+                    (bt:make-thread (lambda ()
+                                      (update-info))
+                                    :name "wpctl-update-info"))))
 
 (defcommand wpctl-volume-up () ()
   "Increase the volume by N points"
